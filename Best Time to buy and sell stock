@@ -14,6 +14,22 @@ Solution:
 class Solution {
 public:
     int maxProfit(vector<int>& p) {
+     int tprofit=INT_MIN,minele=INT_MAX;
+        for(int i=0;i<p.size();i++)
+        {
+            minele=min(minele, p[i]);
+            tprofit=max(tprofit,p[i]-minele);
+        }
+        return tprofit;
+    }
+};
+
+
+another solution:
+
+class Solution {
+public:
+    int maxProfit(vector<int>& p) {
      int lsf=INT_MAX;
      int maxp=0;
      int currp=0;
@@ -29,6 +45,7 @@ public:
 
     }
 };
+
 
 Kadane's Algorithm (max subarray):
 
