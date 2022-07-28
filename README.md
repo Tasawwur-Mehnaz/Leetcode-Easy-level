@@ -6,6 +6,6 @@
  I also mentioned the topics on which the questions are based, this will help you to solve in a organised way.
 
 🤩And please dont forget to give it a star if you like this :)
-🙂Also I have made solution for hard level ques and easy level ques, make sure that you checked out them also :)
+🙂Also I have made solution for medium level and hard level ques, make sure that you checked out them also :)
 
 Feedback is always welcome.😊
