@@ -1,0 +1,67 @@
+Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].
+
+Example 1:
+Input: root = [10,5,15,3,7,null,18], low = 7, high = 15
+Output: 32
+Explanation: Nodes 7, 10, and 15 are in the range [7, 15]. 7 + 10 + 15 = 32.
+
+Solution:  Recursive, preorder
+
+class Solution {
+public:
+    void process(int &sum, TreeNode* node,int l,int r)
+    {
+        if(node==NULL)
+           return;
+        if(node->val>=r)
+            process(sum,node->left,l,r);
+        else if(node->val<=l)
+            process(sum,node->right,l,r);
+        else
+        {
+            sum+=node->val;
+            process(sum,node->left,l,r);
+            process(sum,node->right,l,r);
+        }
+        
+        return;
+        
+    }
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int sum=low+high;
+        process(sum,root,low,high);
+        return sum;
+    }
+};
+
+Iterative Method, Bfs
+
+class Solution {
+public:
+   
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int sum=0;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode* node=q.front();
+            q.pop();
+            if(node->val<low && node->right!=NULL)
+                q.push(node->right);
+            else if(node->val>high && node->left!=NULL)
+                q.push(node->left);
+            else if(node->val>=low && node->val<=high)
+            {
+                sum+=node->val;
+                if(node->left!=NULL)
+                    q.push(node->left);
+                if(node->right!=NULL)
+                    q.push(node->right);
+            }
+            
+        }
+       
+        return sum;
+    }
+};
