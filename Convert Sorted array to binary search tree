@@ -26,3 +26,20 @@ public:
         
     }
 };
+
+OR
+
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        if(!nums.size())
+            return NULL;
+        int mid=nums.size()/2;
+        TreeNode* tree=new TreeNode(nums[mid]);
+        vector<int> left(nums.begin(),nums.begin()+mid);
+        vector<int> right(nums.begin()+mid+1,nums.end());
+        tree->left=sortedArrayToBST(left);
+        tree->right=sortedArrayToBST(right);
+        return tree;
+    }
+};
