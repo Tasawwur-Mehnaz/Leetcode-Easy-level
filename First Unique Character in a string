@@ -1,0 +1,52 @@
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Example 1:
+Input: s = "leetcode"
+Output: 0
+
+Example 2:
+Input: s = "loveleetcode"
+Output: 2
+
+SOlution:
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char,int> m;
+ 
+        for(auto i:s)
+        {
+            m[i]++;
+        }
+        for(int i=0;i<s.length();i++)
+        {
+            if(m[s[i]]==1)
+                return i;
+        }
+        return -1;
+    }
+};
+
+OR
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char,pair<int,int>> m;
+        int n=s.length();
+        for(int i=0;i<n;i++)
+        {
+            m[s[i]].first++;
+            m[s[i]].second=i;    
+            
+                                // storing frequency as well as index of s[i]
+        }
+        for(auto [c,p]:m)
+        {
+            if(m[c].first==1)
+                n=min(n,m[c].second);     //finding out index of first non repeated element
+        }
+        return n==s.length() ? -1 : n;
+    }
+};
