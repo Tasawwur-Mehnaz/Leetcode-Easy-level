@@ -1,0 +1,50 @@
+Given an integer n, return true if it is a power of three. Otherwise, return false.
+An integer n is a power of three, if there exists an integer x such that n == 3x.
+
+Example 1:
+Input: n = 27
+Output: true
+
+Solution:
+
+This solution is same for power of two and four
+tips: for power of two
+return (n&n-1)
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+       if(n<2 && n!=1) 
+           return false;
+        while(n>1)                  //standard solution for 2, 3, 4 power
+        {
+            int r=n%3;
+            n/=3;
+            if(r!=0)
+                return false;
+        }
+        return true;
+    }
+};
+
+
+OR
+
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+       if(n<=0)
+           return false;
+        while(1)
+        {
+            if(n==1 || n==3)
+                return true;
+            if(n%3!=0)
+                return false;
+            n/=3;
+        };
+        return true;
+        
+    }
+};
