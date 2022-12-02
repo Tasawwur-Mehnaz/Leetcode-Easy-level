@@ -1,0 +1,43 @@
+Given a binary tree, find its minimum depth.
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+Note: A leaf is a node with no children.
+
+Example 1:
+
+Input: root = [3,9,20,null,null,15,7]
+Output: 2
+
+Solution:
+
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root==NULL)
+          return 0;
+        else
+        {
+            int left=minDepth(root->left);
+            int right=minDepth(root->right);
+            if(left<right && left!=0 || (left>right && right==0))
+            {
+                return left+1;
+            }
+            return right+1;
+        }
+    }
+};
+
+Simpler one:
+
+int minDepth(TreeNode* r)
+    {
+        if(r==NULL)
+        return 0;
+        if(r->left==NULL)
+        return 1+minDepth(r->right);
+        if(r->right==NULL)
+        return 1+minDepth(r->left);
+        int l=minDepth(r->left);
+        int rr=minDepth(r->right);
+        return 1+min(l,rr);
+    }
