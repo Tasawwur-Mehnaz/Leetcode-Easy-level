@@ -1,0 +1,59 @@
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+Return the kth positive integer that is missing from this array.
+ 
+
+Example 1:
+
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+
+
+Solution:
+
+O(logN)
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int n=arr.size();
+        int l=0,h=n;
+        while(l<h)
+        {
+            int mid=(l+h)/2;
+            if(arr[mid]-mid>k)
+              h=mid;
+            else
+              l=mid+1;
+        }
+        return l+k;
+    }
+};
+
+
+O(N)
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int n=arr.size();
+        int ans=0,count=0;
+        int t=arr[n-1]+k;
+        vector<bool> vis(1001+k,false);
+        for(auto i:arr)
+        {
+            vis[i]=true;
+        }
+        for(int i=1;i<=t;i++)
+        {
+            if(count==k)
+              break;
+            if(vis[i]==false)
+            {
+              ans=i;
+              count++;
+            }
+        }
+        return ans;
+    }
+};
